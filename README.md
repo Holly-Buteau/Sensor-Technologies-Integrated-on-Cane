@@ -1,1 +1,1 @@
-# HackRice7ArtRecognizer
+# HackRice 2017 Smart Cane
