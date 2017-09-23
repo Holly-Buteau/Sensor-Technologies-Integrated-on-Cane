@@ -1,0 +1,1 @@
+# HackRice7ArtRecognizer
