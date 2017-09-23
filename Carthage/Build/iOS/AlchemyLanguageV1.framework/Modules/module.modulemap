@@ -7,4 +7,5 @@ framework module AlchemyLanguageV1 {
 
 module AlchemyLanguageV1.Swift {
     header "AlchemyLanguageV1-Swift.h"
+    requires objc
 }

@@ -7,4 +7,5 @@ framework module DialogV1 {
 
 module DialogV1.Swift {
     header "DialogV1-Swift.h"
+    requires objc
 }

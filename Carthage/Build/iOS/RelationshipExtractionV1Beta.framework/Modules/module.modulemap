@@ -7,4 +7,5 @@ framework module RelationshipExtractionV1Beta {
 
 module RelationshipExtractionV1Beta.Swift {
     header "RelationshipExtractionV1Beta-Swift.h"
+    requires objc
 }

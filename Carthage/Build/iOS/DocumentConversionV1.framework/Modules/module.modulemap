@@ -7,4 +7,5 @@ framework module DocumentConversionV1 {
 
 module DocumentConversionV1.Swift {
     header "DocumentConversionV1-Swift.h"
+    requires objc
 }

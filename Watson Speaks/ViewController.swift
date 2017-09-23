@@ -38,6 +38,37 @@ class ViewController: UIViewController {
     
     //let session = AVAudioSession.sharedInstance()
 
+    func convertTexttoSpeech(message: String) {
+        let username = "372e741c-01af-4589-96d6-8eee21b13bfc"
+        let password = "4OQ6HfuLLdSw"
+        let textToSpeech = TextToSpeech(username: username, password: password)
+        let text = message
+        let failure = { (error: Error) in print(error) }
+        
+        textToSpeech.synthesize(text, failure: failure) { data in
+            self.audioPlayer = try! AVAudioPlayer(data: data)
+            self.audioPlayer.play()
+        }
+    }
+    
+    func sayObject() {
+        let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
+        let version = "2017-09-23" // use today's date for the most recent version
+        let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
+        
+        let url = "https://www.what-dog.net/Images/faces2/scroll0015.jpg"
+        let failure = { (error: Error) in print(error) }
+        visualRecognition.classify(image: url, failure: failure) { classifiedImages in
+            //print("Image data: " )
+            //print(classifiedImages)
+            
+            let image = classifiedImages.images.first
+            let classifier = image?.classifiers.first
+            
+            self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+        }
+    }
+    
     func volumeChanged(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
@@ -45,29 +76,25 @@ class ViewController: UIViewController {
                 if volumeChangeType == "ExplicitVolumeChange" {
                     
                     cameraController.captureImage {(image, error) in
-                        guard let image = image else {
+                        guard image != nil else {
                             print(error ?? "Image capture error")
                             return
                         }
-                        
                     }
                     
-                    
+                    sayObject()
                 }
             }
         }
     }
-   
 }
+
 
 
 
 extension ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         
         let volumeView = MPVolumeView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.view.addSubview(volumeView)
@@ -76,19 +103,10 @@ extension ViewController {
                                                name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"),
                                                object: nil)
 
-        let username = "372e741c-01af-4589-96d6-8eee21b13bfc"
-        let password = "4OQ6HfuLLdSw"
-        let textToSpeech = TextToSpeech(username: username, password: password)
+        convertTexttoSpeech(message: "Howdy")
         
-        let text = "Howdy"
-        let failure = { (error: Error) in print(error) }
-        textToSpeech.synthesize(text, failure: failure) { data in
-            self.audioPlayer = try! AVAudioPlayer(data: data)
-            self.audioPlayer.play()
-        }
         // Do any additional setup after loading the view, typically from a nib.
         
-    
         func configureCameraController() {
             cameraController.prepare {(error) in
                 if let error = error {
@@ -106,8 +124,6 @@ extension ViewController {
             captureButton.layer.cornerRadius = min(captureButton.frame.width, captureButton.frame.height) / 2
         }
         
-        
-        
         styleCaptureButton()
         configureCameraController()
         
@@ -115,13 +131,10 @@ extension ViewController {
         
     }
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    
 }
 
 extension ViewController {
@@ -160,32 +173,13 @@ extension ViewController {
     
     @IBAction func captureImage(_ sender: UIButton) {
         cameraController.captureImage {(image, error) in
-            guard let image = image else {
+            guard image != nil else {
                 print(error ?? "Image capture error")
                 return
             }
          
-            let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
-            let version = "2017-09-23" // use today's date for the most recent version
-            let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
-            
-            let url = "https://static.pexels.com/photos/126407/pexels-photo-126407.jpeg"
-            let failure = { (error: Error) in print(error) }
-            visualRecognition.classify(image: url, failure: failure) { classifiedImages in
-                print(classifiedImages)
+            self.sayObject()
                 
             }
-            
-            //print("First value: " + classifiedImages)
-            
-
         }
-        
     }
-    
-    
-    
-}
-
-
-
