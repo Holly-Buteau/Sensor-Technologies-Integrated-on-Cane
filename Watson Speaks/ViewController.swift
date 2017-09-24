@@ -52,10 +52,6 @@ class ViewController: UIViewController {
 
     }
     
-    func sayObject() {
-        
-        
-    }
     
     func volumeChanged(notification: NSNotification) {
         
@@ -84,20 +80,34 @@ class ViewController: UIViewController {
                         
                         
                         cloudinary.createUploader().upload(data: jpegimage!, uploadPreset: "dloi83q6", params: params, progress: nil) { (result, error) in
-                        print(error)
-                        print(result?.url)
+                            print(error)
+                            print(result?.url)
+                        
+                        
+                        let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
+                        let version = "2017-09-23"
+                        let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
+                        
+                        let url = result?.url
+                        let failure = { (error: Error) in print(error) }
+                        
+                        visualRecognition.classify(image: url!, failure: failure) { classifiedImages in
+                            
+                            let image = classifiedImages.images.first
+                            let classifier = image?.classifiers.first
+                            
+                            print("The word is: " )
+                            print((classifier?.classes.first?.classification.description)!)
+                            
+                            self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+                        
+                            }
                         }
-                        
-                        
-                        
                     }
-                    
-                    
                 }
             }
         }
     }
-   
 }
 
 
@@ -105,8 +115,6 @@ class ViewController: UIViewController {
 extension ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         
         let volumeView = MPVolumeView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -198,6 +206,7 @@ extension ViewController {
                 return
             }
          
+            /*
             let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
             let version = "2017-09-23" // use today's date for the most recent version
             let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
@@ -214,6 +223,7 @@ extension ViewController {
                 
                 
             }
+ */
             
            
         }
