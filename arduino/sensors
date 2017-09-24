@@ -1,0 +1,76 @@
+
+
+// the pins connected to the Ultrasonic sensor
+int analogPin = 6;
+int val = 0;
+int echoPin = 4;
+int trigPin = 5;
+int speakerPin = 8;
+const int sensorMin = 0;
+// sensor maximum, discovered through experiment
+const int sensorMax = 600;
+// the lowest pitch possible
+const int lowestPitch = 150;
+// the highest pitch possible
+const int highestPitch = 1000;
+
+void setup()
+{
+    // set up serial
+    Serial.begin(9600);
+    // set the pinmode on our ultrasonic echo, and tric pins
+    pinMode(echoPin, INPUT);
+    pinMode(trigPin, OUTPUT);
+    pinMode(analogPin,OUTPUT);   
+    pinMode(11,OUTPUT); 
+}
+
+void loop()
+{
+    
+    // measure the pulse length from the echo pin
+    
+
+    // calculate the distance using the speed of sound
+    
+
+    // print it out over serial
+    
+    bool distance = true;
+    while(distance = true)
+        {
+          float distanceCentimeters;
+          int pulseLenMicroseconds;
+          int val = 6; 
+
+          // bit-bang a small square wave
+          // on the trig pin to start the range
+         // finder
+        digitalWrite(trigPin, LOW);
+        delayMicroseconds(20);
+        digitalWrite(trigPin, HIGH);
+        delayMicroseconds(100);
+        digitalWrite(trigPin, LOW);
+
+          pulseLenMicroseconds = pulseIn(echoPin, HIGH);
+          distanceCentimeters = pulseLenMicroseconds / 29.387 / 2;
+          Serial.println(distanceCentimeters);
+            if(distanceCentimeters > 250)
+                distance = false;
+                
+            else if(distanceCentimeters < 200 && distanceCentimeters > 100)
+            {  val = 28 * val;
+              analogWrite(A0,val); 
+             }
+
+            else if(distanceCentimeters < 100)
+              digitalWrite(11,HIGH);   
+            
+        }
+       
+
+    
+   
+        
+    delay(100);
+}
