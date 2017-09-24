@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     override var prefersStatusBarHidden: Bool { return true }
     
     
-    var resultString: String = ""
+    //var resultString: String = ""
     
     var audioPlayer: AVAudioPlayer!
 
@@ -54,6 +54,7 @@ class ViewController: UIViewController {
 
     }
     
+    /*
     func sayObject() {
         
         let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
@@ -75,6 +76,7 @@ class ViewController: UIViewController {
             
         }
     }
+    */
     
     
     func volumeChanged(notification: NSNotification) {
@@ -106,13 +108,34 @@ class ViewController: UIViewController {
                         cloudinary.createUploader().upload(data: jpegimage!, uploadPreset: "dloi83q6", params: params, progress: nil) { (result, error) in
                             print(error)
                             print(result?.url)
-                            self.resultString = (result?.url)!
+                            //self.resultString = (result?.url)!
                         
                         
-                        self.sayObject()
-                            
-                        }
+                    
+                    let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
+                    let version = "2017-09-23"
+                    let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
+                    
+                    let url = result?.url
+                    let failure = { (error: Error) in print(error) }
+                    
+                    visualRecognition.classify(image: url!, failure: failure) { classifiedImages in
+                        
+                        let image = classifiedImages.images.first
+                        let classifier = image?.classifiers.first
+                        
+                        print("The word is: " )
+                        print((classifier?.classes.first?.classification.description)!)
+                        
+                        self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+                        
                     }
+
+                    }
+                    }
+                    
+                    
+                
                 }
             }
         }
@@ -209,13 +232,53 @@ extension ViewController {
     }
     
     @IBAction func captureImage(_ sender: UIButton) {
+        
+        
+        let cloudinary = CLDCloudinary(configuration: CLDConfiguration(cloudinaryUrl: "cloudinary://655478538525698:RSQM15GVuLBpRGdJvMWqax9e7jQ@dloi83q6")!)
+        
+        
         cameraController.captureImage {(image, error) in
             guard image != nil else {
                 print(error ?? "Image capture error")
                 return
             }
          
-            self.sayObject()
+            let jpegimage = UIImageJPEGRepresentation(image!, 0.2)
+            
+            print(image)
+            
+            
+            
+            let params = CLDUploadRequestParams()
+            params.setParam("api_key", value: "655478538525698")
+            //                        params.setPublicId("dloi83q")
+            
+            
+            cloudinary.createUploader().upload(data: jpegimage!, uploadPreset: "dloi83q6", params: params, progress: nil) { (result, error) in
+                print(error)
+                print(result?.url)
+                //self.resultString = (result?.url)!
+                
+            // sayObject
+            let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
+            let version = "2017-09-23"
+            let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
+            
+            let url = result?.url
+            let failure = { (error: Error) in print(error) }
+            
+            visualRecognition.classify(image: (url)!, failure: failure) { classifiedImages in
+                
+                let image = classifiedImages.images.first
+                let classifier = image?.classifiers.first
+                
+                print("The word is: " )
+                print((classifier?.classes.first?.classification.description)!)
+                
+                self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+                
+            }
+
             /*
             let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
             let version = "2017-09-23" // use today's date for the most recent version
@@ -235,7 +298,7 @@ extension ViewController {
             }
  */
             
-           
+            }
         }
         
     }
