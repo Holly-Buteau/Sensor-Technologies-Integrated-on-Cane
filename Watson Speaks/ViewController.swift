@@ -35,6 +35,8 @@ class ViewController: UIViewController {
     override var prefersStatusBarHidden: Bool { return true }
     
     
+    var resultString: String = ""
+    
     var audioPlayer: AVAudioPlayer!
 
 
@@ -50,6 +52,28 @@ class ViewController: UIViewController {
             self.audioPlayer.play()
         }
 
+    }
+    
+    func sayObject() {
+        
+        let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
+        let version = "2017-09-23"
+        let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
+        
+        let url = resultString
+        let failure = { (error: Error) in print(error) }
+        
+        visualRecognition.classify(image: url, failure: failure) { classifiedImages in
+            
+            let image = classifiedImages.images.first
+            let classifier = image?.classifiers.first
+            
+            print("The word is: " )
+            print((classifier?.classes.first?.classification.description)!)
+            
+            self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+            
+        }
     }
     
     
@@ -82,26 +106,11 @@ class ViewController: UIViewController {
                         cloudinary.createUploader().upload(data: jpegimage!, uploadPreset: "dloi83q6", params: params, progress: nil) { (result, error) in
                             print(error)
                             print(result?.url)
+                            self.resultString = (result?.url)!
                         
                         
-                        let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
-                        let version = "2017-09-23"
-                        let visualRecognition = VisualRecognition(apiKey: apiKey, version: version)
-                        
-                        let url = result?.url
-                        let failure = { (error: Error) in print(error) }
-                        
-                        visualRecognition.classify(image: url!, failure: failure) { classifiedImages in
+                        self.sayObject()
                             
-                            let image = classifiedImages.images.first
-                            let classifier = image?.classifiers.first
-                            
-                            print("The word is: " )
-                            print((classifier?.classes.first?.classification.description)!)
-                            
-                            self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
-                        
-                            }
                         }
                     }
                 }
@@ -201,11 +210,12 @@ extension ViewController {
     
     @IBAction func captureImage(_ sender: UIButton) {
         cameraController.captureImage {(image, error) in
-            guard let image = image else {
+            guard image != nil else {
                 print(error ?? "Image capture error")
                 return
             }
          
+            self.sayObject()
             /*
             let apiKey = "3c1f946df3534dfa14524a54ddf4d067d1cfd4e4"
             let version = "2017-09-23" // use today's date for the most recent version
