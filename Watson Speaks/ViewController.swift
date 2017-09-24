@@ -11,7 +11,6 @@ import Photos
 import TextToSpeechV1
 import AVFoundation
 import MediaPlayer
-
 import VisualRecognitionV3
 
 
