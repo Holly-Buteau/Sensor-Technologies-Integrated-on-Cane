@@ -7,4 +7,4 @@
 ### Holly Buteau, Oregan State University
 ### Natalie Cluck, Texas A&M University
 ### Orlando Gordillo, University of Texas El Paso
-### Johnathan Sanoval, University of Houston
+### Johnathan Sandoval, University of Houston
