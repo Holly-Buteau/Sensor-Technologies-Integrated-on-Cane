@@ -18,6 +18,7 @@
 		22A0644A1F7688D000B5A865 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A064481F7688D000B5A865 /* Main.storyboard */; };
 		22A0644C1F76899600B5A865 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22A0644B1F76899600B5A865 /* Info.plist */; };
 		22A0644E1F76B1FD00B5A865 /* VisualRecognitionV3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A0644D1F76B1FD00B5A865 /* VisualRecognitionV3.framework */; };
+		E7AB4145DC6E67ED193C6756 /* Pods_Watson_Speaks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33AE0D85F08A47DF723A4FF3 /* Pods_Watson_Speaks.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,9 @@
 		22A064481F7688D000B5A865 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		22A0644B1F76899600B5A865 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A0644D1F76B1FD00B5A865 /* VisualRecognitionV3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisualRecognitionV3.framework; path = Carthage/Build/iOS/VisualRecognitionV3.framework; sourceTree = "<group>"; };
+		33AE0D85F08A47DF723A4FF3 /* Pods_Watson_Speaks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watson_Speaks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8612B6DB5B9902462680E077 /* Pods-Watson Speaks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watson Speaks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Watson Speaks/Pods-Watson Speaks.debug.xcconfig"; sourceTree = "<group>"; };
+		C883B17862C0A998A444CBE2 /* Pods-Watson Speaks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watson Speaks.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watson Speaks/Pods-Watson Speaks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,7 @@
 				22A0644E1F76B1FD00B5A865 /* VisualRecognitionV3.framework in Frameworks */,
 				223F3CE81F76594F00FF0353 /* RestKit.framework in Frameworks */,
 				223F3CEE1F76594F00FF0353 /* TextToSpeechV1.framework in Frameworks */,
+				E7AB4145DC6E67ED193C6756 /* Pods_Watson_Speaks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +66,7 @@
 				223F3CCB1F76561700FF0353 /* Watson Speaks */,
 				223F3CCA1F76561700FF0353 /* Products */,
 				223F3CE01F76594D00FF0353 /* Frameworks */,
+				27778764D4E83A46093C196A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +103,18 @@
 				223F3CE51F76594F00FF0353 /* SpeechToTextV1.framework */,
 				223F3CE61F76594F00FF0353 /* SpeechToTextV1.framework.dSYM */,
 				223F3CE71F76594F00FF0353 /* TextToSpeechV1.framework */,
+				33AE0D85F08A47DF723A4FF3 /* Pods_Watson_Speaks.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27778764D4E83A46093C196A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8612B6DB5B9902462680E077 /* Pods-Watson Speaks.debug.xcconfig */,
+				C883B17862C0A998A444CBE2 /* Pods-Watson Speaks.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,10 +124,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 223F3CDB1F76561800FF0353 /* Build configuration list for PBXNativeTarget "Watson Speaks" */;
 			buildPhases = (
+				07351B0942136ED4298E5135 /* [CP] Check Pods Manifest.lock */,
 				223F3CC51F76561700FF0353 /* Sources */,
 				223F3CC61F76561700FF0353 /* Frameworks */,
 				223F3CC71F76561700FF0353 /* Resources */,
 				223F3CEF1F7659A300FF0353 /* ShellScript */,
+				DEDCF7A9F0D693980BBBDEB0 /* [CP] Embed Pods Frameworks */,
+				91D93849E61067322787507E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,7 +153,7 @@
 				TargetAttributes = {
 					223F3CC81F76561700FF0353 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 6YN84UB93J;
+						DevelopmentTeam = 5D8EE7CC3K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -173,6 +192,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		07351B0942136ED4298E5135 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Watson Speaks-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		223F3CEF1F7659A300FF0353 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +225,41 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		91D93849E61067322787507E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Watson Speaks/Pods-Watson Speaks-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEDCF7A9F0D693980BBBDEB0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Watson Speaks/Pods-Watson Speaks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cloudinary/Cloudinary.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cloudinary.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Watson Speaks/Pods-Watson Speaks-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -302,40 +374,36 @@
 		};
 		223F3CDC1F76561800FF0353 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8612B6DB5B9902462680E077 /* Pods-Watson Speaks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6YN84UB93J;
+				DEVELOPMENT_TEAM = 5D8EE7CC3K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Watson Speaks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017-Nat.Watson-Speaks";
+				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017.Watson-Speaks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		223F3CDD1F76561800FF0353 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C883B17862C0A998A444CBE2 /* Pods-Watson Speaks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6YN84UB93J;
+				DEVELOPMENT_TEAM = 5D8EE7CC3K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Watson Speaks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017-Nat.Watson-Speaks";
+				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017.Watson-Speaks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
