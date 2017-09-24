@@ -127,6 +127,12 @@ class ViewController: UIViewController {
                         print("The word is: " )
                         print((classifier?.classes.first?.classification.description)!)
                         
+                        var sortedlistofclasses = classifier?.classes.sorted { $0.score > $1.score }
+                        
+                        
+                        
+                        print(sortedlistofclasses)
+                        
                         self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
                         
                     }
@@ -274,6 +280,8 @@ extension ViewController {
                 
                 print("The word is: " )
                 print((classifier?.classes.first?.classification.description)!)
+                
+                
                 
                 self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
                 
