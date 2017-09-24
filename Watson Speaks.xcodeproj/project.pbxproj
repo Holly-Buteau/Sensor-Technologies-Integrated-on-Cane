@@ -134,7 +134,7 @@
 				TargetAttributes = {
 					223F3CC81F76561700FF0353 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 6YN84UB93J;
+						DevelopmentTeam = 5D8EE7CC3K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -306,14 +306,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6YN84UB93J;
+				DEVELOPMENT_TEAM = 5D8EE7CC3K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Watson Speaks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017-Nat.Watson-Speaks";
+				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017.Watson-Speaks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -326,14 +326,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6YN84UB93J;
+				DEVELOPMENT_TEAM = 5D8EE7CC3K;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Watson Speaks/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017-Nat.Watson-Speaks";
+				PRODUCT_BUNDLE_IDENTIFIER = "HackRice2017.Watson-Speaks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
