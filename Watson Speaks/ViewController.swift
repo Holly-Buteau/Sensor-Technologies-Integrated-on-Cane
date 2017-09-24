@@ -129,11 +129,12 @@ class ViewController: UIViewController {
                         
                         var sortedlistofclasses = classifier?.classes.sorted { $0.score > $1.score }
                         
+                        sortedlistofclasses?.removeFirst()
+                        let messagetosent = "looks like a " + (sortedlistofclasses?.first?.classification.description)!
                         
+                        print(messagetosent )
                         
-                        print(sortedlistofclasses)
-                        
-                        self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+                        self.convertTexttoSpeech(message: (messagetosent))
                         
                     }
 
