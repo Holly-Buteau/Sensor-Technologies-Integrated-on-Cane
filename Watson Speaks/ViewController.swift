@@ -38,6 +38,25 @@ class ViewController: UIViewController {
     var audioPlayer: AVAudioPlayer!
 
 
+    func convertTexttoSpeech(message: String) {
+        let username = "372e741c-01af-4589-96d6-8eee21b13bfc"
+        let password = "4OQ6HfuLLdSw"
+        let textToSpeech = TextToSpeech(username: username, password: password)
+        
+        let text = message
+        let failure = { (error: Error) in print(error) }
+        textToSpeech.synthesize(text, failure: failure) { data in
+            self.audioPlayer = try! AVAudioPlayer(data: data)
+            self.audioPlayer.play()
+        }
+
+    }
+    
+    func sayObject() {
+        
+        
+    }
+    
     func volumeChanged(notification: NSNotification) {
         
         let cloudinary = CLDCloudinary(configuration: CLDConfiguration(cloudinaryUrl: "cloudinary://655478538525698:RSQM15GVuLBpRGdJvMWqax9e7jQ@dloi83q6")!)
@@ -97,16 +116,9 @@ extension ViewController {
                                                name: NSNotification.Name(rawValue: "AVSystemController_SystemVolumeDidChangeNotification"),
                                                object: nil)
 
-        let username = "372e741c-01af-4589-96d6-8eee21b13bfc"
-        let password = "4OQ6HfuLLdSw"
-        let textToSpeech = TextToSpeech(username: username, password: password)
         
-        let text = "Howdy"
-        let failure = { (error: Error) in print(error) }
-        textToSpeech.synthesize(text, failure: failure) { data in
-            self.audioPlayer = try! AVAudioPlayer(data: data)
-            self.audioPlayer.play()
-        }
+        convertTexttoSpeech(message: "Howdy")
+        
         // Do any additional setup after loading the view, typically from a nib.
         
     
@@ -195,9 +207,15 @@ extension ViewController {
             visualRecognition.classify(image: url, failure: failure) { classifiedImages in
                 print(classifiedImages)
                 
+                let image2 = classifiedImages.images.first
+                let classifier = image2?.classifiers.first
+                
+                self.convertTexttoSpeech(message: (classifier?.classes.first?.classification.description)!)
+                
+                
             }
             
-
+           
         }
         
     }
